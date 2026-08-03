@@ -1,0 +1,4 @@
+interface:
+  display_name: "开工 Kaigong · 收工 Clock Out"
+  short_description: "开工时接住上下文，收工时检查并留下可靠交接"
+  default_prompt: "Use $kaigong-clockout to start or wrap up this project session."
