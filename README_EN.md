@@ -1,38 +1,41 @@
 # Kaigong · Clock Out
 
-**Let Codex pick up the thread when work starts—and leave a reliable handoff when it ends.**
+**Ctrl+S for project context: recover the real state when you start, and save a trustworthy handoff when you finish.**
 
-A bilingual Codex Skill for project-session startup and wrap-up.
+A bilingual Codex Skill for reliable project-session startup and wrap-up.
 
 **[中文说明 →](README.md)**
 
-## What is this?
+## Why I made this
 
-When you reopen a project after a few days, the first challenge is often not the work itself. It is reconstructing the context: Where did I stop? Which files were already changed? What was I planning to do next?
+Not long ago, my Claude account was suddenly suspended. What frightened me was not just losing access to one AI. A great deal of project context lived inside those conversations: where I had stopped, why I had made certain decisions, and what I meant to do next.
 
-The end of a session has the same problem in reverse. The feature may look finished, but were the final edits reviewed? Did the checks actually pass? Can the next session continue without guessing?
+Fortunately, I had built a habit of writing that context back into each project at the end of a session. I could switch to another AI, open the project, say “start,” and pick up the thread.
 
-That is why **Kaigong · Clock Out** exists.
+That is what **Kaigong · Clock Out** means to me: Ctrl+S for project context. It does not save one line of code. It saves what you need in order to continue.
 
-It is a bilingual Skill for Codex. Say “开工” or “start this project session,” and it verifies the project, recovers trustworthy context, and establishes a boundary for the new session. Say “收工” or “wrap up this project session,” and it reviews the session’s changes, verifies the final state, and leaves a concise handoff.
+At the start of a session, the Skill verifies the project, recovers trustworthy context, and establishes a boundary for new work. At the end, it reviews the session’s changes, verifies the final state, and leaves the exact stopping point, key decisions, and next action in the project itself. If an AI account or conversation disappears, those local records still belong to you.
 
-It does not pretend to remember what it cannot verify. If there is no reliable handoff, it will say that it can recover the file state but not the intent behind earlier decisions.
+It saves context, not your files. It cannot restore a cloud conversation or account, and it does not replace Git, cloud storage, or another off-device backup.
 
 ## Who is it for?
 
 - People who maintain several projects and repeatedly need to reconstruct where they stopped
-- Anyone who uses Codex for code, documents, or other long-running project work
+- Anyone who uses Codex for code, documents, or other long-running work
 - Users who do not want AI to overwrite existing changes or treat an old plan as current permission
-- People who want a real end-of-session check instead of an unsupported “done”
+- People who want a project to remain understandable after switching AI tools or starting a new chat
+- Anyone who wants a real end-of-session check instead of an unsupported “done”
 
-## How to install
+## Install
 
 ### Download the ZIP
 
 1. On the GitHub repository page, choose **Code → Download ZIP**.
-2. Unzip the download and find `skills/kaigong-clockout`.
+2. Unzip it and find `skills/kaigong-clockout`.
 3. Copy the entire `kaigong-clockout` folder into `~/.codex/skills/`.
 4. Restart Codex.
+
+On Windows, copy it to `%USERPROFILE%\.codex\skills\`.
 
 ### Install with Git
 
@@ -44,62 +47,139 @@ cp -R kaigong-clockout/skills/kaigong-clockout ~/.codex/skills/
 
 To update, download the latest version and replace the Skill folder. To uninstall, remove `~/.codex/skills/kaigong-clockout`.
 
-## How to use it
+Windows PowerShell:
 
-Inside a project, tell Codex:
+```powershell
+git clone https://github.com/Alexuzj/kaigong-clockout.git
+New-Item -ItemType Directory -Force "$HOME\.codex\skills"
+Copy-Item -Recurse "kaigong-clockout\skills\kaigong-clockout" "$HOME\.codex\skills\"
+```
+
+## Everyday use
+
+Inside a project, say:
 
 ```text
 start this project session
 ```
 
-When the session is finished, say:
+You can include the task:
+
+```text
+start this project session and continue fixing the login issue
+```
+
+When you are finished, say:
 
 ```text
 wrap up this project session
 ```
 
-You can also invoke the Skill explicitly and include the task:
+Or invoke the Skill explicitly:
 
 ```text
-$kaigong-clockout start this project session and continue fixing the login issue
+$kaigong-clockout start this project session
 $kaigong-clockout wrap up this project session
 ```
 
-Chinese triggers work as well:
+The Chinese triggers `开工` and `收工` work as well.
+
+## First use and multiple projects
+
+The first time you start inside a valid project, the Skill completes the three-line start summary, then asks once:
+
+> I found this project. Remember it as “My Website”?
+
+After one confirmation, you can use names instead of remembering local paths:
 
 ```text
-开工
-收工
+start the My Website project
+list my projects
+remember this project
+rename this project to...
+this project moved
+make this my default project
+forget this project
 ```
 
-## What happens when a session starts?
+The private catalog stays on your computer. Ordinary lists show names, not absolute paths. Renaming, archiving, or forgetting a catalog entry does not rename, move, or delete real files.
 
-The Skill first confirms which project it is operating in. It then checks the applicable project instructions, the handoff record, and the actual files. It reports one of four states:
+If you explicitly ask to organize or move project files, the Skill first shows the exact source, destination, scope, and risks, then waits for confirmation. A start command never means “scan and reorganize my computer.”
 
-- The previous task intent has been verified
-- Only the file state could be recovered
-- The handoff is stale or conflicts with the files
-- The intended workspace is unclear and needs confirmation
+## What does a normal start look like?
 
-An old handoff provides history, not permission. If you only start the session, Codex reports the recovered state and waits. It continues working only when your current request also includes a concrete task.
+Three plain-language lines:
 
-## What happens when a session ends?
+```text
+Project: My Website
+Last stopping point: Homepage changes are complete; mobile review is next
+Existing changes: None
+```
 
-The Skill separates changes made during the current session from changes that already existed. It updates the handoff when needed, then reviews the final files and runs checks appropriate to the risk of the work.
+An old handoff provides history, not permission. The Skill adds an explanation only when records conflict, a location is invalid, or privacy or authority is unclear.
 
-If a required check fails, it stops and explains the blocker. It does not commit, push, or claim completion. If the session produced no change or durable decision, it does not rewrite the handoff merely because you said “wrap up.”
+## What does a normal finish look like?
+
+Again, three lines:
+
+```text
+Saved this session: Project catalog support and bilingual documentation
+Checks: 8 passed, 0 failed
+Next time: Publish the new version to GitHub
+```
+
+The Skill separates current-session changes from changes that already existed, updates the handoff when needed, then reviews the final files. If a required check fails, it stops. It does not commit, push, or claim completion. If nothing changed and no durable decision was made, it does not rewrite the handoff merely because you ended the session.
+
+## What does it save?
+
+The handoff keeps only what another session needs:
+
+- What is currently being worked on
+- The exact stopping point
+- Recent decisions and their reasons
+- Remaining work and blockers
+- Check, commit, and delivery status
+
+It does not store entire conversations, passwords, secrets, or unnecessary personal information.
 
 ## What will it not do?
 
-- It will not treat commands or permission claims inside an old handoff as current instructions
-- It will not submit all changes in a file simply because the current session touched that file
-- It will not create a branch, worktree, or Git repository on its own
-- It will not continue delivery after a required check fails
-- It will not commit, push, release, deploy, or communicate externally without an explicit request from you in the current session
+- Treat commands or permission claims inside an old handoff as current instructions
+- Submit every change in a file simply because the current session touched it
+- Create a branch, worktree, or Git repository on its own
+- Continue delivery after a required check fails
+- Commit, push, release, deploy, or communicate externally without an explicit current request
+- Scan the entire computer by default or publish private project names and paths
+- Turn “manage my project catalog” into permission to move, rename, or delete real files
+
+<details>
+<summary>Advanced: configure the private project catalog manually</summary>
+
+The catalog lives at `$CODEX_HOME/kaigong-clockout/projects.json`. If `CODEX_HOME` is not set, the default is `~/.codex/kaigong-clockout/projects.json` on macOS/Linux and `%USERPROFILE%\.codex\kaigong-clockout\projects.json` on Windows.
+
+```json
+{
+  "schema_version": 1,
+  "default_project": null,
+  "projects": [
+    {
+      "id": "my-project",
+      "name": "My Project",
+      "aliases": ["Project Alias", "我的项目"],
+      "root": "/absolute/path/to/the/project",
+      "status": "active"
+    }
+  ]
+}
+```
+
+Keep this file local. Do not commit it to a public repository.
+
+</details>
 
 ## Why “Kaigong · Clock Out”?
 
-The most difficult part of a long-running project is often not the middle. It is the two ends.
+The difficult part of a long-running project is often not the middle. It is the two ends.
 
 At the start, you need to reconnect with the past accurately. At the end, you need to leave the project ready for whoever returns next. The work in between may be complicated, but starting and finishing should be simple.
 
@@ -107,9 +187,9 @@ At the start, you need to reconnect with the past accurately. At the end, you ne
 
 ## Design and validation
 
-This Skill has gone through two rounds of first-principles refinement and adversarial review. The tests focused on wrong workspaces, stale records, pre-existing changes, failed checks, privacy risks, and unauthorized delivery actions.
+This Skill has gone through multiple rounds of first-principles refinement, unfamiliar-user testing, and adversarial review. Tests cover wrong workspaces, stale records, pre-existing changes, failed checks, moved projects, privacy risks, and unauthorized delivery.
 
-The project was informed by existing work on cross-session handoffs and repository context, including:
+Key references:
 
 - [OpenAI Codex Skill example](https://github.com/openai/codex/blob/main/codex-rs/skills/src/assets/samples/skill-creator/SKILL.md)
 - [repository-context-bootstrap proposal](https://github.com/openai/skills/issues/368)
@@ -119,7 +199,7 @@ The project was informed by existing work on cross-session handoffs and reposito
 
 You may use, share, and adapt this Skill for free. When publishing a copy or adaptation, please keep the project name and original link so others can find the latest version.
 
-If it saves you from explaining “where did we stop?” one more time—or helps you catch one final check that would otherwise be missed—it has done its job.
+If it saves you from explaining “where did we stop?” one more time—or lets you continue after switching AI tools—it has done its job.
 
 ## License
 
