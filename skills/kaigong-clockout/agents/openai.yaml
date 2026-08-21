@@ -1,4 +1,4 @@
 interface:
   display_name: "开工 Kaigong · 收工 Clock Out"
-  short_description: "项目上下文的 Ctrl+S：开工接住现场，收工可靠保存"
+  short_description: "Vibe Coding 时代的 Ctrl+S：保存下一次接得住的上下文"
   default_prompt: "Use $kaigong-clockout to start or wrap up this project session, or manage my private project shelf."

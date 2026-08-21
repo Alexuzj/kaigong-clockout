@@ -1,6 +1,8 @@
 # Kaigong · Clock Out
 
-**Ctrl+S for project context: recover the real state when you start, and save a trustworthy handoff when you finish.**
+**Ctrl+S for the Vibe Coding Era.**
+
+Save the context you need to continue—not just the code.
 
 A bilingual Codex Skill for reliable project-session startup and wrap-up.
 
@@ -12,7 +14,7 @@ Not long ago, my Claude account was suddenly suspended. What frightened me was n
 
 Fortunately, I had built a habit of writing that context back into each project at the end of a session. I could switch to another AI, open the project, say “start,” and pick up the thread.
 
-That is what **Kaigong · Clock Out** means to me: Ctrl+S for project context. It does not save one line of code. It saves what you need in order to continue.
+That is what **Kaigong · Clock Out** means to me: Ctrl+S for the Vibe Coding Era. It does not save one line of code. It saves what you need in order to continue.
 
 At the start of a session, the Skill verifies the project, recovers trustworthy context, and establishes a boundary for new work. At the end, it reviews the session’s changes, verifies the final state, and leaves the exact stopping point, key decisions, and next action in the project itself. If an AI account or conversation disappears, those local records still belong to you.
 

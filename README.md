@@ -1,6 +1,8 @@
 # 开工 Kaigong · 收工 Clock Out
 
-**项目开发里的 Ctrl+S：开工时接住现场，收工时保存上下文。**
+**Vibe Coding 时代的 Ctrl+S。**
+
+保存的不是代码，而是下一次继续工作的上下文。
 
 A bilingual Codex Skill for reliable project-session startup and wrap-up.
 
@@ -12,7 +14,7 @@ A bilingual Codex Skill for reliable project-session startup and wrap-up.
 
 幸好我习惯在收工时，把这些信息留回项目。换一个 AI，打开项目，说一声“开工”，现场还能接起来。
 
-对我来说，「开工 Kaigong · 收工 Clock Out」就是项目开发里的 Ctrl+S。它保存的不是某一行代码，而是下一次继续工作需要的上下文。
+对我来说，「开工 Kaigong · 收工 Clock Out」就是 Vibe Coding 时代的 Ctrl+S。它保存的不是某一行代码，而是下一次继续工作需要的上下文。
 
 “开工”会核实当前项目、恢复可靠现场，并划清本次工作的边界；“收工”会审查本次改动、验证最终状态，把准确停点、关键决定和下一步留在项目文件里。即使 AI 账号或对话中断，这些本地记录仍然属于你。
 

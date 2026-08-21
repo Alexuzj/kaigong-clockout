@@ -2,11 +2,11 @@
 
 ## Current work
 
-面向开源用户的首次收工与项目书架体验已经完成：先可靠交接，再选择是否收纳项目位置。
+公开版定位已统一为“Vibe Coding 时代的 Ctrl+S”，首次收工与项目书架体验保持不变。
 
 ## Stopped at
 
-核心规则、书架参考、界面提示和中英文说明已更新；首次直接收工与项目书架的对抗场景已经验证。
+中文 README、英文 README、Skill 界面文案和 GitHub 简介已统一更新并通过最终检查。
 
 ## Decisions
 
@@ -22,6 +22,7 @@
 - 第一次直接收工仍可留下事实性交接，但没有开工基线时，当前文件一律视为原有现场。
 - 只有交接成功后才邀请加入项目书架；收工本身不授权登记，书架也不移动真实文件。
 - 普通检查结果不强制伪造数量；只有真实可计数时才报告通过与失败数。
+- “Vibe Coding 时代的 Ctrl+S”作为传播定位，必须紧接“保存上下文，不是代码备份”的准确边界。
 
 ## Remaining
 
@@ -29,5 +30,5 @@
 
 ## Delivery
 
-- Checks: skill structure, bilingual parity, final diff, privacy scan, and 14 adversarial scenarios passed; 0 failures.
+- Checks: positioning consistency, skill structure, bilingual parity, final diff, privacy scan, and prior 14 adversarial scenarios passed; 0 failures.
 - Commit/push: completed for this iteration on `main`.
