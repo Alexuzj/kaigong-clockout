@@ -2,11 +2,11 @@
 
 ## Current work
 
-公开 Skill 的下一版已经完成：用“项目上下文的 Ctrl+S”解释真实价值，增加私人项目目录管理，并简化正常开工与收工的输出。
+已修复空白新聊天误认项目的问题：新聊天生成目录不会再被当作真实项目。
 
 ## Stopped at
 
-核心 Skill、中英文 README、界面说明和项目目录参考文件已修改，格式、隐私和8个独立行为场景均已验证通过。
+规则、私人目录参考和中英文说明已更新；真实 `kai` 失败场景及六类项目选择分支均已验证。
 
 ## Decisions
 
@@ -18,6 +18,7 @@
 - 私人项目名称和路径只保存在本机，不进入公开仓库。
 - “Ctrl+S”保存的是项目上下文，不是文件备份，也不能恢复云端聊天或账号。
 - 中英文 README 内容对等，但分别使用自然表达。
+- 新聊天目录必须先匹配私人项目目录或提供持续项目证据；否则视为未绑定，并从已登记项目中选择。
 
 ## Remaining
 
@@ -25,5 +26,5 @@
 
 ## Delivery
 
-- Checks: passed skill validation, diff and privacy checks, bilingual structure review, and 8 independent behavior scenarios after one correction; 0 failures.
-- Commit/push: authorized for this iteration; publish this completed state to `main`.
+- Checks: skill structure, final diff, real blank-chat case, and 6 selection scenarios passed; 0 failures.
+- Commit/push: authorized for this correction; publish the verified state to `main`.

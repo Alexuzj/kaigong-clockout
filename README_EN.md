@@ -102,6 +102,8 @@ make this my default project
 forget this project
 ```
 
+If you only say “start” in a brand-new blank chat, the Skill will not mistake the chat's generated workspace for a project. When several registered projects exist, it lists their names and numbers so you can choose.
+
 The private catalog stays on your computer. Ordinary lists show names, not absolute paths. Renaming, archiving, or forgetting a catalog entry does not rename, move, or delete real files.
 
 If you explicitly ask to organize or move project files, the Skill first shows the exact source, destination, scope, and risks, then waits for confirmation. A start command never means “scan and reorganize my computer.”

@@ -41,6 +41,18 @@ Before selecting or writing a record:
 4. When repairing a moved project, verify the old and new locations represent the same project using durable identifiers such as Git remote, repository history, or matching project records. If identity cannot be established, ask rather than update.
 5. Validate the complete new JSON before replacing the existing file. If writing fails, preserve the old file and report the failure.
 
+## Selecting a project at session start
+
+Use the catalog before treating an arbitrary chat directory as a project:
+
+1. A project explicitly named or located by the current user wins.
+2. Otherwise, resolve links and select a unique active catalog entry whose root is the real current directory or an ancestor of it.
+3. Otherwise, use the current directory only when durable evidence proves it is a continuing project.
+4. Otherwise, use the confirmed active default, or the sole active project when there is only one.
+5. If several active projects remain, list their names with numbers and wait for the user's selection.
+
+A newly generated chat workspace is not a project identity. Date-based Codex session folders and directories that contain only `work/`, `outputs/`, or other empty delivery containers remain unbound. Never register or enter them solely from their folder name. Do not report `已进入` or `Project:` until the selection and root have been verified.
+
 ## Operations
 
 - **Remember:** identify the confirmed project root, propose a concise name, ask once, then add a stable `id`, useful aliases, the root, and `active` status.
