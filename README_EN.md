@@ -84,13 +84,17 @@ $kaigong-clockout wrap up this project session
 
 The Chinese triggers `开工` and `收工` work as well.
 
-## First use and multiple projects
+## First use: starting with “finish”
 
-The first time you start inside a valid project, the Skill completes the three-line start summary, then asks once:
+Many people first use the Skill after they have already done some work and are ready to finish. That works naturally.
 
-> I found this project. Remember it as “My Website”?
+The Skill first checks the session and leaves a handoff. After that succeeds, it asks:
 
-After one confirmation, you can use names instead of remembering local paths:
+> Add “My Website” to your project shelf? This records its location without moving any files.
+
+Once confirmed, the project joins a private shelf stored only on your computer. You can then use names instead of remembering local paths:
+
+If the session did not begin with a start command, the Skill can still complete this first finish. It treats the current file state as pre-existing and will not claim, commit, or clean those changes on its own.
 
 ```text
 start the My Website project
@@ -104,7 +108,7 @@ forget this project
 
 If you only say “start” in a brand-new blank chat, the Skill will not mistake the chat's generated workspace for a project. When several registered projects exist, it lists their names and numbers so you can choose.
 
-The private catalog stays on your computer. Ordinary lists show names, not absolute paths. Renaming, archiving, or forgetting a catalog entry does not rename, move, or delete real files.
+The project shelf is an index, not a physical folder that projects must be moved into. Ordinary lists show names, not absolute paths. Renaming, archiving, or forgetting a shelf entry changes only the local record; it does not rename, move, or delete real files.
 
 If you explicitly ask to organize or move project files, the Skill first shows the exact source, destination, scope, and risks, then waits for confirmation. A start command never means “scan and reorganize my computer.”
 
@@ -125,12 +129,12 @@ An old handoff provides history, not permission. The Skill adds an explanation o
 Again, three lines:
 
 ```text
-Saved this session: Project catalog support and bilingual documentation
-Checks: 8 passed, 0 failed
+Saved this session: Project shelf support and bilingual documentation
+Checks: Complete; no issues found
 Next time: Publish the new version to GitHub
 ```
 
-The Skill separates current-session changes from changes that already existed, updates the handoff when needed, then reviews the final files. If a required check fails, it stops. It does not commit, push, or claim completion. If nothing changed and no durable decision was made, it does not rewrite the handoff merely because you ended the session.
+The Skill separates current-session changes from changes that already existed, updates the handoff when needed, then reviews the final files. If a required check fails, it stops. It does not commit, push, or claim completion. It shows pass/fail counts only when checks were actually run and countable. If nothing changed and no durable decision was made, it does not rewrite the handoff merely because you ended the session.
 
 ## What does it save?
 
@@ -152,12 +156,12 @@ It does not store entire conversations, passwords, secrets, or unnecessary perso
 - Continue delivery after a required check fails
 - Commit, push, release, deploy, or communicate externally without an explicit current request
 - Scan the entire computer by default or publish private project names and paths
-- Turn “manage my project catalog” into permission to move, rename, or delete real files
+- Turn “manage my project shelf” into permission to move, rename, or delete real files
 
 <details>
-<summary>Advanced: configure the private project catalog manually</summary>
+<summary>Advanced: configure the private project shelf manually</summary>
 
-The catalog lives at `$CODEX_HOME/kaigong-clockout/projects.json`. If `CODEX_HOME` is not set, the default is `~/.codex/kaigong-clockout/projects.json` on macOS/Linux and `%USERPROFILE%\.codex\kaigong-clockout\projects.json` on Windows.
+The shelf record lives at `$CODEX_HOME/kaigong-clockout/projects.json`. If `CODEX_HOME` is not set, the default is `~/.codex/kaigong-clockout/projects.json` on macOS/Linux and `%USERPROFILE%\.codex\kaigong-clockout\projects.json` on Windows.
 
 ```json
 {
@@ -189,7 +193,7 @@ At the start, you need to reconnect with the past accurately. At the end, you ne
 
 ## Design and validation
 
-This Skill has gone through multiple rounds of first-principles refinement, unfamiliar-user testing, and adversarial review. Tests cover wrong workspaces, stale records, pre-existing changes, failed checks, moved projects, privacy risks, and unauthorized delivery.
+This Skill has gone through multiple rounds of first-principles refinement, unfamiliar-user testing, and adversarial review. Tests cover a first interaction that starts with finish, blank-chat misidentification, wrong workspaces, stale records, pre-existing changes, damaged shelf data, moved projects, privacy risks, and unauthorized delivery.
 
 Key references:
 

@@ -1,6 +1,6 @@
-# Private project catalog
+# Private project shelf
 
-Read this reference only when finding, creating, or modifying the user's private project catalog.
+Read this reference only when finding, creating, or modifying the user's private project shelf. The JSON file is the internal catalog; user-facing language should say “项目书架” in Chinese and “project shelf” in English.
 
 ## Location and format
 
@@ -40,6 +40,19 @@ Before selecting or writing a record:
 3. Ensure active project names and aliases do not create multiple matches. Stop on a conflict instead of guessing.
 4. When repairing a moved project, verify the old and new locations represent the same project using durable identifiers such as Git remote, repository history, or matching project records. If identity cannot be established, ask rather than update.
 5. Validate the complete new JSON before replacing the existing file. If writing fails, preserve the old file and report the failure.
+6. Before writing, confirm the catalog parent is the intended local configuration directory and the destination is absent or a regular file. Do not follow a destination symlink or overwrite another file type.
+
+## First-finish onboarding
+
+Offer the shelf only after the core finish has succeeded and the final project state is verified.
+
+- The project must be a continuing user project, not an app-generated chat workspace, temporary directory, dependency, output folder, or read-only location.
+- Resolve links before comparing roots. If the project is already active or archived, do not ask again and do not silently change its status.
+- Show the normal three-line finish result first. Then ask one short question with a proposed display name and say explicitly that registration records the location but does not move files.
+- A finish request does not authorize registration. Write only after an affirmative answer in the current conversation.
+- If the user declines, do nothing. Do not create a marker inside the project and do not keep asking in the same conversation.
+- If the catalog is missing, create it only after confirmation. If it is malformed, duplicated, unreadable, or unwritable, preserve it, report the shelf problem separately, and leave the completed handoff untouched.
+- Never copy the shelf or its private paths into `CONTEXT.md`, README files, Git commits, or public output.
 
 ## Selecting a project at session start
 
